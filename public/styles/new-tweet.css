@@ -3,7 +3,7 @@
     color: white;
   background-color: #4056A1;
   border-color:#4056A1 ;
-  font-size: 30px;
+  font-size: 35px;
   margin-bottom: 0rem;
 }
 
@@ -29,4 +29,57 @@
 .counter{
     float: right;
     font-size: 40px;
+}
+
+/* tweet container */
+
+.tweet-container{
+    margin-top: 3em;
+    border: 5px solid rgba(0, 0, 0, 0.582);
+}
+.tweet-container:hover{
+    box-shadow: 10px 5px 15px rgba(81, 95, 99, 0.2); 
+}
+
+.tweet-container  header{
+    display: flex; 
+    align-items: center;     
+    justify-content: space-between;     
+    font-size: 0.9em;     
+    font-weight: 600;
+    margin-left: 1em;
+    margin-right: 1em;
+    margin-top: 1em;
+}
+
+.tweet-left{
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+    
+}
+.tweet-left > img{
+    width: 100px;
+}
+
+.tweet-content{
+    font-size: 30px;
+    font-weight: 600;
+    border-bottom: 5px solid rgba(22, 22, 22, 0.801);
+    padding-bottom: 1.5em;
+    margin-left: 1em;
+    margin-right: 1em;
+}
+.tweet-container > footer{
+    margin-bottom: 1em;
+    margin-left: 2em;
+    margin-right: 2em;
+}
+.icons{
+    float: right;
+    color: #4056A1;
+}
+
+.icon:hover{
+    color: rgb(223, 179, 84);
 }
