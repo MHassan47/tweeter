@@ -47,18 +47,20 @@ const createTweetElement = function (tweet){
         <h2 class="username">${tweet.user.handle}</h2>
       </div>
     </header>
-    <p class="tweet-content">${tweet.content.text}</p>
+    <p class="tweet-content">${escape(tweet.content.text)}</p>
     <footer>
-      <div ${timeago.format(tweet.content.created_at, 'pt_BR')}</span>
+      <div>
+      ${timeago.format(tweet.created_at)}
+      </div>
       <span class="icons">
       <i class="fa-solid fa-flag icon"></i>
       <i class="fa-solid fa-retweet icon"></i>
       <i class="fa-solid fa-heart icon"></i>
       </span>
-    </div>
 
       </footer>
-
+      <script>
+    </script>
   </article>`
   return $tweet
 }
@@ -68,13 +70,12 @@ $(document).ready(function (){
     
     $('.tweet-send').submit(function(event){
         event.preventDefault();
-        console.log(event);
         const textarea = $("#tweet-text").val().trim()
         if(!textarea){
-            return alert('Please add content!')
+           return $('.error').text('This tweet is empty, please add more characters!').SlideDown()
         }
         if(textarea.length > 140){
-            return alert("Tweet is too long")
+           return $('.error').text("This tweet has too many characters!").SlideDown()
         }
 
         $.ajax('/tweets', {
@@ -84,7 +85,7 @@ $(document).ready(function (){
             $.ajax('/tweets', {
                 method: "GET",
         })  .then(function(data){
-            renderTweets(data)
+            renderTweets(data.reverse())
             console.log(data);
         })
         })
