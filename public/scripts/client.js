@@ -3,6 +3,8 @@
  * jQuery is already loaded
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
+
+// Tweet database
 const data = [
   {
     user: {
@@ -28,18 +30,21 @@ const data = [
   },
 ];
 
+// renders and appends tweets to tweets html element
 const renderTweets = function (tweets) {
   for (let tweet of tweets) {
     $("#tweet-container").append(createTweetElement(tweet));
   }
 };
 
+// function required for preventing XSS with escaping
 const escape = function (string) {
   let div = document.createElement("div");
   div.appendChild(document.createTextNode(string));
   return div.innerHTML;
 };
 
+// provides dynamic html elements for tweet
 const createTweetElement = function (tweet) {
   let $tweet = `<article class="tweet">
     <header> 
@@ -70,20 +75,24 @@ const createTweetElement = function (tweet) {
   return $tweet;
 };
 
+// form submission with JQuery, serialize() to send to server as query string
+// event listener responsible for preventing page from performing defualt action of reloading/redirecting upon clicking "tweet"
+// error conditions to prevent empty or excessive tweets
+// implements rendertweet to render new tweets
 $(document).ready(function () {
   renderTweets(data);
-
+  $(".error").hide();
   $(".tweet-send").submit(function (event) {
     event.preventDefault();
     const textarea = $("#tweet-text").val().trim();
     if (!textarea) {
       return $(".error")
-        .text("This tweet is empty, please add more characters!")
+        .text("⚠️⚠️⚠️This tweet is empty, please add more characters!⚠️⚠️⚠️")
         .slideDown();
     }
     if (textarea.length > 140) {
       return $(".error")
-        .text("This tweet has too many characters!")
+        .text("⚠️⚠️⚠️This tweet has too many characters!⚠️⚠️⚠️")
         .slideDown();
     }
 
@@ -103,7 +112,6 @@ $(document).ready(function () {
         }).then(function (data) {
           $("#tweet-container").empty();
           renderTweets(data.reverse());
-          console.log(data);
         });
       });
   });

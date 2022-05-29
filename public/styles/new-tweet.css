@@ -74,6 +74,7 @@
 .name {
   color: #f4f1ec;
 }
+
 .tweet-content {
   font-size: 30px;
   font-weight: 600;
@@ -99,4 +100,7 @@ footer {
 
 .icon:hover {
   color: rgb(223, 179, 84);
+}
+.tweet:hover {
+  box-shadow: 15px 10px 15px rgba(58, 70, 94, 0.2);
 }

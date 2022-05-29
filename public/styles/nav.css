@@ -1,36 +1,35 @@
-.nav{
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    align-items: center;
-    background-image:url(https://www.transparenttextures.com/patterns/45-degree-fabric-light.png);
+.nav {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  background-image: url(https://www.transparenttextures.com/patterns/45-degree-fabric-light.png);
   background-color: #000000;
-    color: #FFFFFF;
-    height: 120px;
-    position: fixed;
-    z-index: 10;
-    top: 0; 
-    padding-left: 1.5em;
-    padding-right: 1.5em;
-    padding-top: 0.7em ;
-    margin-bottom: 30em;
+  color: #ffffff;
+  height: 120px;
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  padding-left: 1.5em;
+  padding-right: 1.5em;
+  padding-top: 0.7em;
+  margin-bottom: 30em;
 }
 
-.nav-right{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+.nav-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
   margin: 1.5em;
 }
 
-.tweeter-logo{
-    font-size: 40pt;
-    font-family: 'Bungee', cursive;
-    color: #FFFFFF;
+.tweeter-logo {
+  font-size: 40pt;
+  font-family: "Bungee", cursive;
+  color: #ffffff;
 }
 
-.fa-solid fa-angles-down {
-    font-size: 30px;
-    color: rgb(245, 30, 66);
-  }
+#arrows {
+  color: red;
+}
