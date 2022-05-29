@@ -41,7 +41,6 @@ const escape = function (string) {
 };
 
 const createTweetElement = function (tweet) {
-  console.log(tempt);
   let $tweet = `<article class="tweet">
     <header> 
       <div class="tweet-left">
@@ -104,6 +103,7 @@ $(document).ready(function () {
         }).then(function (data) {
           $("#tweet-container").empty();
           renderTweets(data.reverse());
+          console.log(data);
         });
       });
   });
