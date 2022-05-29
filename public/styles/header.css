@@ -1,44 +1,38 @@
-
-
-
-.header{
+.header {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-image:url(https://www.transparenttextures.com/patterns/45-degree-fabric-light.png);
+  background-image: url(https://www.transparenttextures.com/patterns/45-degree-fabric-light.png);
   background-color: #000000;
   margin-top: 5em;
   height: 400px;
 }
 
-.name{
-  font-family: 'Source Sans Pro', sans-serif;
- 
+.name {
+  font-family: "Source Sans Pro", sans-serif;
 }
 
 @media only screen and (min-width: 1024px) {
-  body{
+  body {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     margin-top: 4em;
   }
-  .nav{
-    background-color: #4056A1;
+  .nav {
+    background-color: #4056a1;
     background-image: none;
   }
-  .header{
+  .header {
     width: 33.3%;
-    
+
     float: left;
     margin-left: 50px;
   }
-  .container{
+  .container {
     width: 66.7%;
     float: right;
     align-self: center;
   }
-
- 
 }
