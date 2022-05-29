@@ -4,39 +4,45 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 const data = [
-    {
-      "user": {
-        "name": "Newton",
-        "avatars": "https://i.imgur.com/73hZDYK.png"
-        ,
-        "handle": "@SirIsaac"
-      },
-      "content": {
-        "text": "If I have seen further it is by standing on the shoulders of giants"
-      },
-      "created_at": 1461116232227
+  {
+    user: {
+      name: "Newton",
+      avatars: "https://i.imgur.com/73hZDYK.png",
+      handle: "@SirIsaac",
     },
-    {
-      "user": {
-        "name": "Descartes",
-        "avatars": "https://i.imgur.com/nlhLi3I.png",
-        "handle": "@rd" },
-      "content": {
-        "text": "Je pense , donc je suis"
-      },
-      "created_at": 1461113959088
-    }
-  ]
+    content: {
+      text: "If I have seen further it is by standing on the shoulders of giants",
+    },
+    created_at: 1461116232227,
+  },
+  {
+    user: {
+      name: "Descartes",
+      avatars: "https://i.imgur.com/nlhLi3I.png",
+      handle: "@rd",
+    },
+    content: {
+      text: "Je pense , donc je suis",
+    },
+    created_at: 1461113959088,
+  },
+];
 
+const renderTweets = function (tweets) {
+  for (let tweet of tweets) {
+    $("#tweet-container").append(createTweetElement(tweet));
+  }
+};
 
-const renderTweets = function(tweets){
-    for (let tweet of tweets){
-        $('#tweet-container').append(createTweetElement(tweet))
-    }
-}
+const escape = function (string) {
+  let div = document.createElement("div");
+  div.appendChild(document.createTextNode(string));
+  return div.innerHTML;
+};
 
-const createTweetElement = function (tweet){
-    let $tweet = `<article class="tweet">
+const createTweetElement = function (tweet) {
+  console.log(tempt);
+  let $tweet = `<article class="tweet">
     <header> 
       <div class="tweet-left">
         <img src="${tweet.user.avatars}">
@@ -61,34 +67,44 @@ const createTweetElement = function (tweet){
       </footer>
       <script>
     </script>
-  </article>`
-  return $tweet
-}
+  </article>`;
+  return $tweet;
+};
 
-$(document).ready(function (){
-    // renderTweets(data)
-    
-    $('.tweet-send').submit(function(event){
-        event.preventDefault();
-        const textarea = $("#tweet-text").val().trim()
-        if(!textarea){
-           return $('.error').text('This tweet is empty, please add more characters!').SlideDown()
-        }
-        if(textarea.length > 140){
-           return $('.error').text("This tweet has too many characters!").SlideDown()
-        }
+$(document).ready(function () {
+  renderTweets(data);
 
-        $.ajax('/tweets', {
-            method: "POST",
-            data: $(this).serialize()
-        }) .then(function(){
-            $.ajax('/tweets', {
-                method: "GET",
-        })  .then(function(data){
-            renderTweets(data.reverse())
-            console.log(data);
-        })
-        })
+  $(".tweet-send").submit(function (event) {
+    event.preventDefault();
+    const textarea = $("#tweet-text").val().trim();
+    if (!textarea) {
+      return $(".error")
+        .text("This tweet is empty, please add more characters!")
+        .slideDown();
+    }
+    if (textarea.length > 140) {
+      return $(".error")
+        .text("This tweet has too many characters!")
+        .slideDown();
+    }
+
+    $.ajax("/tweets", {
+      method: "POST",
+      data: $(this).serialize(),
     })
-
-})
+      .then(function () {
+        $(".error").hide();
+        $(".error").empty();
+        $("#tweet-text").val("").empty();
+        $(".counter").text("140");
+      })
+      .then(function () {
+        $.ajax("/tweets", {
+          method: "GET",
+        }).then(function (data) {
+          $("#tweet-container").empty();
+          renderTweets(data.reverse());
+        });
+      });
+  });
+});
