@@ -3,7 +3,8 @@
     width: 100%;
     justify-content: space-between;
     align-items: center;
-    background-color: #4056A1;
+    background-image:url(https://www.transparenttextures.com/patterns/45-degree-fabric-light.png);
+  background-color: #000000;
     color: #FFFFFF;
     height: 120px;
     position: fixed;
@@ -28,3 +29,8 @@
     font-family: 'Bungee', cursive;
     color: #FFFFFF;
 }
+
+.fa-solid fa-angles-down {
+    font-size: 30px;
+    color: rgb(245, 30, 66);
+  }
