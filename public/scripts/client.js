@@ -75,13 +75,23 @@ const createTweetElement = function (tweet) {
   return $tweet;
 };
 
+const loadTweets = function () {
+  $.ajax("/tweets", {
+    method: "GET",
+  }).then(function (data) {
+    $("#tweet-container").empty();
+    renderTweets(data.reverse());
+  });
+};
+
 // form submission with JQuery, serialize() to send to server as query string
 // event listener responsible for preventing page from performing defualt action of reloading/redirecting upon clicking "tweet"
 // error conditions to prevent empty or excessive tweets
 // implements rendertweet to render new tweets
 $(document).ready(function () {
-  renderTweets(data);
+  loadTweets();
   $(".error").hide();
+
   $(".tweet-send").submit(function (event) {
     event.preventDefault();
     const textarea = $("#tweet-text").val().trim();
@@ -107,12 +117,10 @@ $(document).ready(function () {
         $(".counter").text("140");
       })
       .then(function () {
-        $.ajax("/tweets", {
-          method: "GET",
-        }).then(function (data) {
-          $("#tweet-container").empty();
-          renderTweets(data.reverse());
-        });
+        loadTweets();
+      })
+      .catch(function (error) {
+        console.log(error);
       });
   });
 });
